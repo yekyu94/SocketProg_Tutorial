@@ -5,6 +5,7 @@ int main(int argc, char const *argv[])
 {
     int socket(int domain, int type, int protocol);
     // -> 소캣을 생성하는 함수인 "socket" 함수 --- 성공시 디스크립터, 실패시 -1 반환
+    // 상세한 부분은 별도로 다룸(socket_func.c 참고)
 
     int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);
     // -> "bind" 함수는 생성된 소켓에 IP주소와 포트번호등을 할당하는 함수이다. --- 성공시 0, 실패시 -1 반환
