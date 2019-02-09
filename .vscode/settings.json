@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "inet.h": "c"
+        "stdio.h": "c",
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }

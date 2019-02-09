@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
     int fd;
     char buf[]="파일입출력!!!!\n";
     
-    fd = open("./data.txt", O_CREAT|O_WRONLY|O_TRUNC);
+    fd = open("./files/data.txt", O_CREAT|O_WRONLY|O_TRUNC);
     if(fd==-1) error_handling("File open error!");
     printf("FIle's Descriptor : %d \n", fd);
     // int open(const char *path, int flag);

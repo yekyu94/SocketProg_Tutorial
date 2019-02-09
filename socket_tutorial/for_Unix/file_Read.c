@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
     int fd;
     char buf[BUF_SIZE];
     
-    fd = open("./data.txt", O_RDONLY);
+    fd = open("./files/data.txt", O_RDONLY);
     if(fd == -1) error_handling("File Open Error");
     printf("File's Descriptor : %d \n", fd);
 
