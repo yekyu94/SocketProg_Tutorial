@@ -6,13 +6,23 @@
         {
             "label": "build_gcc",
             "type": "shell",
-            "command": "gcc",
-            "args": [
-                "-g",
-                "-o",
-                "${fileDirname}/out/${fileBasenameNoExtension}.out",
-                "${file}"
-            ],
+            "windows": {
+                "command": "gcc",
+                "args": [
+                    "-o",
+                    "${fileDirname}\\out\\${fileBasenameNoExtension}.exe",
+                    "${file}"
+                ],
+            },
+            "osx": {
+                "command": "gcc",
+                "args": [
+                    "-g",
+                    "-o",
+                    "${fileDirname}/out/${fileBasenameNoExtension}.out",
+                    "${file}"
+                ],
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -21,13 +31,24 @@
         {
             "label": "build_g++",
             "type": "shell",
-            "command": "g++",
-            "args": [
-                "-g",
-                "-o",
-                "${fileDirname}/out/${fileBasenameNoExtension}.out",
-                "${file}"
-            ],
+            "windows": {
+                "command": "g++",
+                "args": [
+                    "-o",
+                    "${fileDirname}\\out\\${fileBasenameNoExtension}.exe",
+                    "${file}"
+                ],
+            },
+            "osx": {
+                "command": "g++",
+                "args": [
+                    "-g",
+                    "-o",
+                    "${fileDirname}/out/${fileBasenameNoExtension}.out",
+                    "${file}"
+                ],
+            },
+            
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -36,7 +57,8 @@
         {
             "label": "exec",
             "type": "shell",
-            "command": "${fileDirname}/out/${fileBasenameNoExtension}.out",
+            "osx": {"command": "${fileDirname}/out/${fileBasenameNoExtension}.out"},
+            "windows": {"command": "${fileDirname}\\out\\${fileBasenameNoExtension}.exe"},
             "group": {
                 "kind": "build",
                 "isDefault": true
