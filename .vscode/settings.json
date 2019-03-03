@@ -2,6 +2,7 @@
     "files.associations": {
         "stdio.h": "c",
         "ostream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "socket.h": "c"
     }
 }

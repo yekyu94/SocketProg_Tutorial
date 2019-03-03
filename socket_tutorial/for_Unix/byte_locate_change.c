@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <arpa/inet.h>
 
 int main(int argc, char *argv[])
@@ -37,6 +38,29 @@ int main(int argc, char *argv[])
     printf("NET Addr : %#lx \n", net_addr);
     
     // 만약 실행결과에서 HOST와 NET정보가 서로 반대로 나오면 사용중인 CPU가 리틀 엔디안을 채용했다 볼수있다.
+
+    /* IP주소일 경우에 Long 을 쓴다고 했는데 일반적으로 IP주소는 '.'으로 구분되는 문자열을 입력으로 넣는다. 따라서 다른방법이 필요 */
+
+    char *addr1 = "1.2.3.4";
+    char *addr2 = "127.0.0.300";
+
+    unsigned long conv_addr = inet_addr(addr1);
+    if(conv_addr==INADDR_NONE){
+        printf("ERROR\n");
+    }else(printf("ADDR1 => %#lx\n", conv_addr));
+
+    conv_addr = inet_addr(addr2);
+    if(conv_addr==INADDR_NONE){
+        printf("ERROR > 올바르지 못한 IP주소형태\n");
+    }else(printf("ADDR2 => %#lx\n", conv_addr));
+
+    printf("\n");
+    struct sockaddr_in addr_inet;
+    if( !inet_aton(addr1, &addr_inet.sin_addr))
+        printf("ERROR\n");
+    else 
+        printf("Network ordered integer addr : %#x \n", addr_inet.sin_addr.s_addr );
+    
 
     return 0;
 }

@@ -24,17 +24,25 @@ int main(int argc, char const *argv[])
     
     memset(&serv_addr, 0, sizeof(serv_addr));
     serv_addr.sin_family=AF_INET;
-    serv_addr.sin_addr.s_addr = inet_addr("192.168.43.162");
-    serv_addr.sin_port=htons(atoi(9999));
+    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    serv_addr.sin_port=htons(atoi(argv[2]));
 
     if(connect(sock, (struct sockaddr*)&serv_addr, sizeof(serv_addr))==-1)
         error_handling("connect() error");
 
-    str_len=read(sock, message, sizeof(message)-1);
-    if(str_len==-1)
-        error_handling("read() error");
+    int get = 0;
+    while(1){
+        printf("1 : read, 2 : fin\n -> ");
+        scanf("%d", &get);
+        if(get == 2) break;
+        str_len=read(sock, message, sizeof(message)-1);
+        if(str_len==-1)
+            error_handling("read() error");
+        else{
+            printf("Message from server : %s \n", message);
+        }
+    }
     
-    printf("Message from server : %s \n", message);
     close(sock);
 
     return 0;
